@@ -1,0 +1,20 @@
+name: 'Summary Action'
+description: 'Computes a JSON summary of numbers'
+inputs:
+  numbers:
+    description: 'JSON array of numbers as string'
+    required: true
+
+outputs:
+  summary:
+    description: 'Summary JSON string'
+    value: ${{ steps.compute.outputs.result }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: compute
+      shell: bash
+      run: |
+        # Simple placeholder output computing sum/count from the input array
+        echo 'result={"numbers": ${{ inputs.numbers }}, "status": "processed"}' >> $GITHUB_OUTPUT
